@@ -16,8 +16,7 @@ export const NavbarApp = () => {
           <Nav.Link as={Link} to="/">Home</Nav.Link>
           <Nav.Link as={Link} to="/asia">Asia</Nav.Link>
           <Nav.Link as={Link} to="/africa">Africa</Nav.Link>
-          <Nav.Link as={Link} to="/southamerica">South America</Nav.Link>
-          <Nav.Link as={Link} to="/northamerica">North America</Nav.Link>
+          <Nav.Link as={Link} to="/americas">Americas</Nav.Link>
           <Nav.Link as={Link} to="/europe">Europe</Nav.Link>
           <Nav.Link as={Link} to="/antarctica">Antarctica</Nav.Link>
           <Nav.Link as={Link} to="/oceania">Oceania</Nav.Link>
