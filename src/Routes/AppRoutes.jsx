@@ -12,6 +12,13 @@ export const AppRoutes = () => {
         <NavbarApp />
         <Routes>
           <Route path='/' element={<Home />} />
+          {/* <Route path='/asia' element={<Asia />} />
+          <Route path='/africa' element={<Africa />} />
+          <Route path='/southamerica' element={<SouthAmerica />} />
+          <Route path='/northamerica' element={<NorthAmerica />} />
+          <Route path='/europe' element={<Europe />} />
+          <Route path='/antartica' element={<Antarctica />} />
+          <Route path='/oceania' element={<Oceania />} /> */}
         </Routes>
         <Footer />
     </BrowserRouter>
