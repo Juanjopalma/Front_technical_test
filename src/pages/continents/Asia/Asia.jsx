@@ -3,13 +3,10 @@ import React, { useEffect, useState } from 'react'
 
 export const Asia = () => {
 
-  // 9209189948
-
-  // valor total: 4,712,777,762
-  // valor calcu y ch: 4.604.594.974
-
-  const [data, setData] = useState();
-  const [number, setNumber] = useState(0);
+  const [allpopulations, setAllpopulations] = useState([]);
+  const [findCountry, setFindCountry] = useState();
+  const [filter, setFilter] = useState("");
+  const [number, setNumber] = useState();
 
   const addPopulation = (countries) => {
     setNumber(0);
@@ -24,23 +21,45 @@ export const Asia = () => {
       .get(`https://restcountries.com/v3.1/region/Asia`)
       .then((res) => {
         addPopulation(res.data);
-        setData(res.data)
+        setAllpopulations(res.data); // guardo la población de cada país
+        setFindCountry(res.data) // guardo la población de cada país
       })
       .catch((err) => {
         console.log(err);
       })
   }, [])
 
+  // este useEffect permite filtrar por lo que vaya introduciendo en el input
+  useEffect(() => {
+    const tempArray = allpopulations.filter((e) => {
+      return e.population <= filter || filter === "";
+    });
+    setFindCountry(tempArray);
+  }, [filter]);
+
+  // recoge lo que se introduce en el input
+  const handleChange = (e) => {
+    setFilter(e.target.value);
+  };
+
+
   return (
     <div>
       <h2>Asia</h2>
-      {number !== 0 && 
+
+      <input 
+        onChange={handleChange} 
+        placeholder="🔍..." 
+        value={filter} 
+      />
+
+      {number && 
             <>
-            <p>Total población: {number}</p>
+              <p>Total población: {number}</p>
             </>
       }
       <br />
-      {data?.map((e, i) => {
+      {findCountry?.map((e, i) => {
         return (
           <div key={i}>
             <p>Country: {e.name.common}</p>
@@ -49,6 +68,9 @@ export const Asia = () => {
           </div>
         )
       })}
+      {findCountry?.length === 0 && (
+          <p>No countries have been found with this population number</p>
+      )}
     </div>
   )
 }

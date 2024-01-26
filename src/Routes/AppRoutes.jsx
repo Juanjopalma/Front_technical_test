@@ -20,10 +20,10 @@ export const AppRoutes = () => {
           <Route path='/' element={<Home />} />
           <Route path='/asia' element={<Asia />} />
           <Route path='/africa' element={<Africa />} /> 
-          <Route path='/americas' element={<Americas />} />
+          {/* <Route path='/americas' element={<Americas />} />
           <Route path='/europe' element={<Europe />} />
           <Route path='/antarctica' element={<Antarctica />} />
-          <Route path='/oceania' element={<Oceania />} />
+          <Route path='/oceania' element={<Oceania />} /> */}
         </Routes>
         <Footer />
     </BrowserRouter>

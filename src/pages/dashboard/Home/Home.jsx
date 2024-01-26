@@ -61,11 +61,13 @@ export const Home = () => {
         console.log(err);
       })
   }, [])
+
   
   
   return (
     <div>
       <h1>Lista de Continentes</h1>
+
       {/* {data?.map((e, i) => {
         return (
           <div key={i}>
