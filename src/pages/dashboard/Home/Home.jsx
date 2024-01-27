@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Graphic } from '../../../components/Graphic/Graphic';
 
 export const Home = () => {
 
@@ -28,6 +29,7 @@ export const Home = () => {
   }
 
   const [continents, setContinents] = useState(initialValue);
+  const [allpopulations, setAllpopulations] = useState();
   const [findContinent, setFindContinent] = useState();
   const [filter, setFilter] = useState("");
 
@@ -49,6 +51,7 @@ export const Home = () => {
       .get('https://restcountries.com/v3.1/all')
       .then((res) => {
         getPopulationbyContinent(res.data); //  enviamos el array de datos
+        setAllpopulations(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -70,7 +73,10 @@ export const Home = () => {
     setFilter(e.target.value);
   };
 
-  
+  const labels = Object.entries(continents).map((array) => array[0]);
+  const populations = Object.entries(continents).map((array) => array[1]);
+
+
   return (
     <div>
       <h1>Lista de Continentes</h1>
@@ -79,6 +85,11 @@ export const Home = () => {
         onChange={handleChange} 
         placeholder="🔍..." 
         value={filter} 
+      />
+
+      <Graphic
+        labels = {labels}
+        populations={populations}
       />
 
       <br />
