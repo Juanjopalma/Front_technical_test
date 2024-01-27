@@ -1,7 +1,12 @@
-import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-export const Asia = () => {
+export const Region = () => {
+
+  const region = "Asia"
+  // const { region } = useParams();
+  // console.log(region);
 
   const [allpopulations, setAllpopulations] = useState([]);
   const [findCountry, setFindCountry] = useState();
@@ -18,16 +23,18 @@ export const Asia = () => {
 
   useEffect(() => {
     axios
-      .get(`https://restcountries.com/v3.1/region/Asia`)
+      .get(`https://restcountries.com/v3.1/region/${region}`)
       .then((res) => {
-        addPopulation(res.data);
-        setAllpopulations(res.data); // guardo la población de cada país
-        setFindCountry(res.data) // guardo la población de cada país
+        if (res.data) {
+          addPopulation(res.data);
+          setAllpopulations(res.data); // guardo la población de cada país
+          setFindCountry(res.data) // guardo la población de cada país
+        }
       })
       .catch((err) => {
         console.log(err);
       })
-  }, [])
+  }, [region])
 
   // este useEffect permite filtrar por lo que vaya introduciendo en el input
   useEffect(() => {
@@ -45,7 +52,7 @@ export const Asia = () => {
 
   return (
     <div>
-      <h2>Asia</h2>
+      <h2>{region}</h2>
 
       <input 
         onChange={handleChange} 

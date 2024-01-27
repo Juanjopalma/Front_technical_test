@@ -21,41 +21,34 @@ export const Home = () => {
   const initialValue = {
     "Asia": 0 ,
     "Africa": 0,
-    "South America": 0, 
-    "North America": 0,
+    "Americas": 0,
     "Europe": 0,
-    "Antarctica": 0,
+    "Antarctic": 0,
     "Oceania": 0
   }
 
-  const [data, setData] = useState();
   const [continents, setContinents] = useState(initialValue);
-
+  const [findContinent, setFindContinent] = useState();
+  const [filter, setFilter] = useState("");
 
   const getPopulationbyContinent = (countries) => {
-
-    let updatedContinents = { ...continents };
+    let updatedContinents = { ...initialValue }; // hago una copia de continents practicamente
 
     for (let country of countries) { 
       let peopleNumber = country.population; // obtengo la población del país
-      let countryContinent = country.continents; // obtengo el continente del país
+      let countryRegion = country.region; // obtengo el continente del país
 
-       updatedContinents[countryContinent] += peopleNumber;
-
+       updatedContinents[countryRegion] += peopleNumber; // guardo en la copia la pobblación de cada país
       }
+
       setContinents(updatedContinents);
   }
 
   useEffect(() => {
     axios
       .get('https://restcountries.com/v3.1/all')
-      // .get(`https://restcountries.com/v3.1/region/${continent}`)
       .then((res) => {
-        console.log(res);
-
         getPopulationbyContinent(res.data); //  enviamos el array de datos
-
-        setData(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -63,31 +56,44 @@ export const Home = () => {
   }, [])
 
   
+
+  // este useEffect permite filtrar por lo que vaya introduciendo en el input
+  useEffect(() => {
+    const tempArray = Object.entries(continents) // convierto el objeto continents en un array de arrays con clave, valor
+    .filter(([continent, population]) => population <= filter || filter === "");
+
+    setFindContinent(tempArray);
+  }, [filter, continents]);
+
+  // recoge lo que se introduce en el input
+  const handleChange = (e) => {
+    setFilter(e.target.value);
+  };
+
   
   return (
     <div>
       <h1>Lista de Continentes</h1>
 
-      {/* {data?.map((e, i) => {
-        return (
-          <div key={i}>
-            <p>Continent: {e.region}</p>
-            <p>Country: {e.name.common}</p>
-            <p>Population: {e.population}</p>
-            <br />
-          </div>
-        )
-      })} */}
+      <input 
+        onChange={handleChange} 
+        placeholder="🔍..." 
+        value={filter} 
+      />
+
+      <br />
+      <br />
 
       {/* Convierto el objeto en un array de objetos para mapearlo */}
-      {Object.entries(continents)?.map(([key, value]) => {
-        return (
-          <div key={key}>
-            <p>Continent: {key}</p>
-            <p>Population: {value}</p>
-          </div>
-        )
-      })}
+      {findContinent?.map(([continent, population ]) => (
+        <div key={continent}>
+          <p>Continent: {continent}</p>
+          <p>Population: {population}</p>
+        </div>
+      ))}
+      {findContinent?.length === 0 && (
+        <p>No continents have been found with this population number</p>
+      )}
     </div>
   )
 }

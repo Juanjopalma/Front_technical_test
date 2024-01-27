@@ -14,12 +14,12 @@ export const NavbarApp = () => {
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="me-auto">
           <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/asia">Asia</Nav.Link>
-          <Nav.Link as={Link} to="/africa">Africa</Nav.Link>
-          <Nav.Link as={Link} to="/americas">Americas</Nav.Link>
+          <Nav.Link as={Link} to="/region/Asia">Asia</Nav.Link>
+          <Nav.Link as={Link} to="/region/Africa">Africa</Nav.Link>
+          {/* <Nav.Link as={Link} to="/americas">Americas</Nav.Link>
           <Nav.Link as={Link} to="/europe">Europe</Nav.Link>
           <Nav.Link as={Link} to="/antarctica">Antarctica</Nav.Link>
-          <Nav.Link as={Link} to="/oceania">Oceania</Nav.Link>
+          <Nav.Link as={Link} to="/oceania">Oceania</Nav.Link> */}
         </Nav>
       </Navbar.Collapse>
     </Container>
