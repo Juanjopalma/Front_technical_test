@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Graphic } from '../../../components/Graphic/Graphic';
 
 export const Region = () => {
 
@@ -27,8 +28,8 @@ export const Region = () => {
       .then((res) => {
         if (res.data) {
           addPopulation(res.data);
-          setAllpopulations(res.data); // guardo la población de cada país
-          setFindCountry(res.data) // guardo la población de cada país
+          setAllpopulations(res.data); // guardo la población de cada país (mapear)
+          setFindCountry(res.data) // guardo la población de cada país (filtro)
         }
       })
       .catch((err) => {
@@ -49,6 +50,8 @@ export const Region = () => {
     setFilter(e.target.value);
   };
 
+  const labels = allpopulations?.map((e) => e.name.common);
+  const populations = allpopulations?.map((e) => e.population);
 
   return (
     <div>
@@ -58,6 +61,11 @@ export const Region = () => {
         onChange={handleChange} 
         placeholder="🔍..." 
         value={filter} 
+      />
+    
+      <Graphic 
+        labels = {labels} 
+        populations = {populations}
       />
 
       {number && 
@@ -78,6 +86,7 @@ export const Region = () => {
       {findCountry?.length === 0 && (
           <p>No countries have been found with this population number</p>
       )}
+
     </div>
   )
 }
