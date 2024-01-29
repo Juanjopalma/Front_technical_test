@@ -1,20 +1,51 @@
-.avatar{
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: rgb(238, 165, 165);
-  color: white;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
-  p{
-      font-size: 30px;
-  }
-  img{
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-  }
+.navbar {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  position: fixed;
+  z-index: 1000;
+  width: 100%;
+  height: 80px;
+  padding: 0;
 }
-.user{
-  cursor: pointer;
+
+.color {
+  background-color: rgba(0, 0, 0, 0.5) !important;
 }
+
+.no-color {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+
+.navbar-brand,
+.nav-link {
+  color: #fff;
+  font-size: .875rem;
+  padding: 1rem;
+  margin-left: 1.5rem;
+  margin-right: 1.5rem;
+}
+
+.nav-link:hover {
+  color: blue !important;
+}
+
+
+.views {
+  display: flex;
+  justify-content: center;
+}
+
+.titulo {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  color: white;
+}
+

@@ -1,25 +1,34 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import './navbarApp.scss';
 
-export const NavbarApp = () => {
+export const NavbarApp = ({ scrolled }) => {
+
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+  
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
-    <Container fluid>
-      <Navbar.Brand href="#home">SDG PROJECT</Navbar.Brand>
+    <Navbar expand="lg" className={`bg-body-tertiary navbar ${isHome === true ? "no-color" : "color"}`}>
+    <Container fluid className="fix">
+      <Navbar.Brand href="/">
+        <img 
+          src="/images/icons/sdg-group-logo.png" 
+          alt="logo" 
+          height="70px"
+        />
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="me-auto">
-          <Nav.Link as={Link} to="/">Home</Nav.Link>
-          <Nav.Link as={Link} to="/region/Asia">Asia</Nav.Link>
-          <Nav.Link as={Link} to="/region/Africa">Africa</Nav.Link>
-          {/* <Nav.Link as={Link} to="/americas">Americas</Nav.Link>
-          <Nav.Link as={Link} to="/europe">Europe</Nav.Link>
-          <Nav.Link as={Link} to="/antarctica">Antarctica</Nav.Link>
-          <Nav.Link as={Link} to="/oceania">Oceania</Nav.Link> */}
+      <Navbar.Collapse id="basic-navbar-nav" className="views">
+        <Nav>
+          <Nav.Link as={Link} to="/">CONTINENTS</Nav.Link>
+          <Nav.Link as={Link} to="/region/Asia">ASIA</Nav.Link>
+          <Nav.Link as={Link} to="/region/Africa">AFRICA</Nav.Link>
+          <Nav.Link as={Link} to="/region/Americas">AMERICAS</Nav.Link>
+          <Nav.Link as={Link} to="/region/Europe">EUROPE</Nav.Link>
+          <Nav.Link as={Link} to="/region/Antarctic">ANTARCTIC</Nav.Link>
+          <Nav.Link as={Link} to="/region/Oceania">OCEANIA</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Container>
