@@ -5,9 +5,8 @@ import { Graphic } from '../../../components/Graphic/Graphic';
 
 export const Region = () => {
 
-  const region = "Asia"
-  // const { region } = useParams();
-  // console.log(region);
+  const { region } = useParams();
+  console.log(region);
 
   const [allpopulations, setAllpopulations] = useState([]);
   const [findCountry, setFindCountry] = useState();
@@ -78,6 +77,7 @@ export const Region = () => {
         return (
           <div key={i}>
             <p>Country: {e.name.common}</p>
+            <img src={e.flags.png} alt="bandera" />
             <p>Population: {e.population}</p>
             <br />
           </div>

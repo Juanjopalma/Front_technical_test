@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Row } from 'react-bootstrap';
 import { NavbarApp } from '../components/NavbarApp/NavbarApp';
@@ -14,11 +14,6 @@ export const AppRoutes = () => {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/region/:region' element={<Region />} />
-          <Route path='/region/Asia' element={<Region />} />
-          {/* <Route path='/americas' element={<Region region="Americas" />} />
-          <Route path='/europe' element={<Region region="Europe" />} />
-          <Route path='/antarctica' element={<Region region="Antarctica" />} />
-          <Route path='/oceania' element={<Region region="Oceania" />} /> */}
         </Routes>
         <Footer />
     </BrowserRouter>
