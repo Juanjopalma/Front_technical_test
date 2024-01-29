@@ -4,12 +4,12 @@ import { Graphic } from "../../../components/Graphic/Graphic";
 import "./home.scss";
 import { Button, Card, Col, Row } from "react-bootstrap";
 
-import asia_territory from "/images/territories/asia_territory.jpg"; // 800 x 798 - 286 x 268
-import africa_territory from "/images/territories/africa_territory.jpg"; // 550 x 829 - 286 x 285
-import americas_territory from "/images/territories/americas_territory.jpg"; // 800 x 559 286 x 431
-import europe_territory from "/images/territories/europe_territory.jpg"; // 286 x 233
-import oceania_territory from "/images/territories/oceania_territory.jpg"; // 286 x 377
-import antarctic_territory from "/images/territories/antarctic_territory.jpg"; // 286 x 200
+import asia_territory from "/images/territories/asia_territory.jpg"; 
+import africa_territory from "/images/territories/africa_territory.jpg"; 
+import americas_territory from "/images/territories/americas_territory.jpg"; 
+import europe_territory from "/images/territories/europe_territory.jpg"; 
+import oceania_territory from "/images/territories/oceania_territory.jpg"; 
+import antarctic_territory from "/images/territories/antarctic_territory.jpg"; 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 

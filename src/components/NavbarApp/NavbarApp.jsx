@@ -1,17 +1,16 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import './navbarApp.scss';
 
 export const NavbarApp = ({ scrolled }) => {
 
   const location = useLocation();
-
-   const isHome = location.pathname === "/";
+  const isHome = location.pathname === "/";
   
   return (
-    <Navbar expand="lg" className={`bg-body-tertiary navbar ${scrolled ? 'scrolled' : ''}`}>
+    <Navbar expand="lg" className={`bg-body-tertiary navbar ${isHome === true ? "no-color" : "color"}`}>
     <Container fluid className="fix">
       <Navbar.Brand href="/">
         <img 

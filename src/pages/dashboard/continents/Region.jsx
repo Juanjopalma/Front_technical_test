@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Graphic } from '../../../components/Graphic/Graphic';
+import './region.scss';
 
 export const Region = () => {
 
-  const { region } = useParams();
-  console.log(region);
+  const region = "Asia"
+  // const { region } = useParams();
+  // console.log(region);
 
   const [allpopulations, setAllpopulations] = useState([]);
   const [findCountry, setFindCountry] = useState();
@@ -53,7 +55,7 @@ export const Region = () => {
   const populations = allpopulations?.map((e) => e.population);
 
   return (
-    <div>
+    <div className='region'>
       <h2>{region}</h2>
 
       <input 
@@ -77,7 +79,6 @@ export const Region = () => {
         return (
           <div key={i}>
             <p>Country: {e.name.common}</p>
-            <img src={e.flags.png} alt="bandera" />
             <p>Population: {e.population}</p>
             <br />
           </div>

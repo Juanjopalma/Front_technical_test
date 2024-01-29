@@ -4,7 +4,8 @@ import { Row } from 'react-bootstrap';
 import { NavbarApp } from '../components/NavbarApp/NavbarApp';
 import { Footer } from '../components/FooterApp/Footer';
 import { Home } from '../pages/dashboard/Home/Home';
-import { Region } from '../pages/continents/Asia/Region';
+import { Region } from '../pages/dashboard/continents/Region';
+
 
 export const AppRoutes = () => {
 
