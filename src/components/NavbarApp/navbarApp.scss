@@ -10,21 +10,22 @@
   width: 100%;
   height: 80px;
   padding: 0;
-}
-
-.color {
   background-color: rgba(0, 0, 0, 0.5) !important;
 }
 
-.no-color {
-  background-color: rgba(0, 0, 0, 0) !important;
-}
+// .color {
+//   background-color: rgba(0, 0, 0, 0.5) !important;
+// }
+
+// .no-color {
+//   background-color: rgba(0, 0, 0, 0) !important;
+// }
 
 
 .navbar-brand,
 .nav-link {
   color: #fff;
-  font-size: .875rem;
+  font-size: 1rem;
   padding: 1rem;
   margin-left: 1.5rem;
   margin-right: 1.5rem;

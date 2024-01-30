@@ -6,9 +6,8 @@ import './region.scss';
 
 export const Region = () => {
 
-  const region = "Asia"
-  // const { region } = useParams();
-  // console.log(region);
+  const { region } = useParams();
+  console.log(region);
 
   const [allpopulations, setAllpopulations] = useState([]);
   const [findCountry, setFindCountry] = useState();
@@ -31,6 +30,7 @@ export const Region = () => {
           addPopulation(res.data);
           setAllpopulations(res.data); // guardo la población de cada país (mapear)
           setFindCountry(res.data) // guardo la población de cada país (filtro)
+          console.log(res.data);
         }
       })
       .catch((err) => {
@@ -80,7 +80,7 @@ export const Region = () => {
           <div key={i}>
             <p>Country: {e.name.common}</p>
             <p>Population: {e.population}</p>
-            <br />
+            <img src={e.flags.png} alt="flag" />
           </div>
         )
       })}

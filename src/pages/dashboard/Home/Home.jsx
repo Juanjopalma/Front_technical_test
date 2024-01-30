@@ -4,16 +4,25 @@ import { Graphic } from "../../../components/Graphic/Graphic";
 import "./home.scss";
 import { Button, Card, Col, Row } from "react-bootstrap";
 
-import asia_territory from "/images/territories/asia_territory.jpg"; 
-import africa_territory from "/images/territories/africa_territory.jpg"; 
-import americas_territory from "/images/territories/americas_territory.jpg"; 
-import europe_territory from "/images/territories/europe_territory.jpg"; 
-import oceania_territory from "/images/territories/oceania_territory.jpg"; 
-import antarctic_territory from "/images/territories/antarctic_territory.jpg"; 
+import asia_territory from "/images/territories/asia_territory.jpg";
+import africa_territory from "/images/territories/africa_territory.jpg";
+import americas_territory from "/images/territories/americas_territory.jpg";
+import europe_territory from "/images/territories/europe_territory.jpg";
+import oceania_territory from "/images/territories/oceania_territory.jpg";
+import antarctic_territory from "/images/territories/antarctic_territory.jpg";
+import { useLocation } from "react-router-dom";
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+/>;
 
 export const Home = () => {
+
+  const location = useLocation();
+  const isHome = location.pathname === "/";
+
   const territories_images = [
     asia_territory,
     africa_territory,
@@ -106,13 +115,20 @@ export const Home = () => {
         {/* Convierto el objeto en un array de objetos para mapearlo */}
         <Row>
           {findContinent?.map(([continent, population], index) => (
-            <Col key={continent} lg={4} md={6} className="d-flex justify-content-center mb-4">
+            <Col
+              key={continent}
+              lg={4}
+              md={6}
+              className="d-flex justify-content-center mb-4"
+            >
               <Card style={{ width: "18rem" }} className="card">
                 <Card.Img variant="top" src={territories_images[index]} />
                 <Card.Body className="d-flex flex-column align-items-center">
                   <Card.Title className="title">📍 {continent}</Card.Title>
                   <Card.Text className="text">
-                      <img src="/images/icons/user_icon.png" alt="user icon" />{population.toLocaleString()}</Card.Text>
+                    <img src="/images/icons/user_icon.png" alt="user icon" />
+                    {population.toLocaleString()}
+                  </Card.Text>
                   <Button variant="primary">Go to {continent}</Button>
                 </Card.Body>
               </Card>
@@ -123,8 +139,9 @@ export const Home = () => {
           <p>No continents have been found with this population number</p>
         )}
       </section>
-
-      <Graphic labels={labels} populations={populations} />
+      <section className="section3">
+        <Graphic labels={labels} populations={populations} />
+      </section>
     </div>
   );
 };
