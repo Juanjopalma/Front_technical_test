@@ -8,15 +8,15 @@ This application allows you to observe the population data of the different cont
 
 ## Installation
 1. Clone this repository to your local machine: 
-   git clone https://github.com/Juanjopalma/Front_technical_test.git
+   - git clone https://github.com/Juanjopalma/Front_technical_test.git
 
 2. cd API_Countries_Project
 
 3. Install the dependencies:
-   npm i
+   - npm i
 
 4. Start the application:
-   npm run dev
+   - npm run dev
 
 5. Control + click on the terminal message like this:
-   Local:   http://localhost:5173/
+   - Local:   http://localhost:5173/
