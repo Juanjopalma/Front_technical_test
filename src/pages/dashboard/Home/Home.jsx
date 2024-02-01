@@ -3,24 +3,51 @@ import axios from "axios";
 import { Graphic } from "../../../components/Graphic/Graphic";
 import "./home.scss";
 import { Button, Card, Col, Row } from "react-bootstrap";
+import { useLocation, useNavigate } from "react-router-dom";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
+import "./home.scss";
 
-import asia_territory from "/images/territories/asia_territory.jpg"; 
-import africa_territory from "/images/territories/africa_territory.jpg"; 
-import americas_territory from "/images/territories/americas_territory.jpg"; 
-import europe_territory from "/images/territories/europe_territory.jpg"; 
-import oceania_territory from "/images/territories/oceania_territory.jpg"; 
-import antarctic_territory from "/images/territories/antarctic_territory.jpg"; 
+import asia from "/images/continents/asia.jpg";
+import africa from "/images/continents/africa.jpg";
+import americas from "/images/continents/americas.jpg";
+import europe from "/images/continents/europe.png";
+import oceania from "/images/continents/oceania.jpg";
+import antarctic from "/images/continents/antarctic.jpg";
+import { Footer } from "../../../components/FooterApp/Footer";
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+export const Home = ({ setScroll }) => {
 
-export const Home = () => {
-  const territories_images = [
-    asia_territory,
-    africa_territory,
-    americas_territory,
-    europe_territory,
-    oceania_territory,
-    antarctic_territory,
+  const navigate = useNavigate();
+
+  const responsive = {
+    superLargeDesktop: {
+      breakpoint: { max: 4000, min: 3000 },
+      items: 5,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
+
+  const continents_images = [
+    asia,
+    africa,
+    americas,
+    europe,
+    oceania,
+    antarctic,
   ];
 
   const initialValue = {
@@ -33,7 +60,6 @@ export const Home = () => {
   };
 
   const [continents, setContinents] = useState(initialValue);
-  // const [allpopulations, setAllpopulations] = useState();
   const [findContinent, setFindContinent] = useState();
   const [filter, setFilter] = useState("");
 
@@ -80,51 +106,102 @@ export const Home = () => {
   const labels = Object.entries(continents).map((array) => array[0]);
   const populations = Object.entries(continents).map((array) => array[1]);
 
+  useEffect(() => {
+    AOS.init({
+      duration: 3000,
+      offset: 300,
+      once: false,
+    });
+  
+    const handleScroll = () => {
+      setScroll(window.scrollY > 0);
+    };
+  
+    window.addEventListener("scroll", handleScroll);
+  
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+
+
   return (
-    <div>
-      <section className="section1">
-        <video
-          className="video"
-          src="/videos/video.mp4"
-          height="100vw"
-          autoPlay
-          loop
-          muted
-        ></video>
-        <h1 className="titulo text-center">Your trusted data website</h1>
-      </section>
-      <section className="section2">
-        <h2>List of Continents</h2>
+    <div className="home">
+      <div className="bg">
+        <header className="header">
+            <h1>Discover the world thanks to data!</h1>
+            <div className="mt-3">
+              <p>We are no longer in the information age,</p>
+              <p>we are in the age of information management.</p>
+            </div>
+        </header>
+      </div>
+      <main>
+        <section className="section1" id="continents-section">
+          <h2 className="text-center">All your data here!</h2>
 
-        <input
-          className="mb-3"
-          onChange={handleChange}
-          placeholder="🔍..."
-          value={filter}
-        />
+          <input
+            className="filterinput"
+            onChange={handleChange}
+            placeholder=" 🔍 Filter by population number"
+            value={filter}
+          />
 
-        {/* Convierto el objeto en un array de objetos para mapearlo */}
-        <Row>
-          {findContinent?.map(([continent, population], index) => (
-            <Col key={continent} lg={4} md={6} className="d-flex justify-content-center mb-4">
-              <Card style={{ width: "18rem" }} className="card">
-                <Card.Img variant="top" src={territories_images[index]} />
-                <Card.Body className="d-flex flex-column align-items-center">
-                  <Card.Title className="title">📍 {continent}</Card.Title>
-                  <Card.Text className="text">
-                      <img src="/images/icons/user_icon.png" alt="user icon" />{population.toLocaleString()}</Card.Text>
-                  <Button variant="primary">Go to {continent}</Button>
-                </Card.Body>
-              </Card>
-            </Col>
-          ))}
-        </Row>
-        {findContinent?.length === 0 && (
-          <p>No continents have been found with this population number</p>
-        )}
-      </section>
+          <div className="d-flex flex-column align-items-center">
+            <p className="text-center">
+              Thanks to the data, we have statistics for the continents of the world
+            </p>
+            <p className="text-center">
+              You can see cards with population data of the continents
+            </p>
+          </div>
+          {findContinent !== undefined && (
+            <>
+              <Carousel
+                responsive={responsive}
+                infinite={true}
+                className="owl-carousel owl-theme skill-slider"
+              >
+                {findContinent?.map(([continent, population], index) => (
+                  <Card
+                    onClick={() => navigate(`/region/${continent}`)}
+                    key={index}
+                    style={{ width: "18rem"}}
+                    className="onecard"  data-aos="zoom-in" 
+                  >
+                    <Card.Img variant="top" src={continents_images[index]} />
+                    <Card.Body className="d-flex flex-column align-items-center">
+                      <Card.Title className="title">📍 {continent}</Card.Title>
+                      <Card.Text>
+                        <img
+                          className="me-2"
+                          src="/images/icons/user_icon.png"
+                          alt="continent"
+                        />
+                        {population.toLocaleString()}
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                ))}
+              </Carousel>
+            </>
+          )}
+          {findContinent?.length === 0 && (
+            <p>No continents have been found with this population number</p>
+          )}
+        </section>
+        <section className="section2" id="continents-graphic">  
+          <h2>Stadistics about the Continents</h2>
 
-      <Graphic labels={labels} populations={populations} />
+          <Graphic 
+            className="graphic"
+            labels={labels} 
+            populations={populations} 
+          />
+        </section>
+      </main>
+      <Footer />
     </div>
   );
 };

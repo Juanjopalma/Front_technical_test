@@ -31,6 +31,9 @@ export const options = {
       text: 'Population Data ',
     },
   },
+  animation: {
+    duration: 2000, // Especifica la duración de la animación en milisegundos
+  },
 };
 
 export const Graphic = ({labels, populations}) => {
@@ -41,7 +44,7 @@ export const Graphic = ({labels, populations}) => {
       {
         label: 'Populations',
         data: populations, 
-        backgroundColor: 'rgba(255, 99, 132, 0.5)',
+        backgroundColor: '#2F89AA',
       },
     ],
   };

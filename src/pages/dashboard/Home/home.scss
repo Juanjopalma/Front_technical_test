@@ -1,54 +1,157 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre&family=Open+Sans:ital@0;1&family=Tajawal:wght@500&display=swap');
 
-// Section 1
-.section1 {
-  h1 {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 4rem;
+.home {    
+
+  button {
+    background-color: #2D87A8;
+    border-radius: 5px;
+    padding: 0.2rem 1rem;
+    color: white;
   }
 
-  .video {
-    box-sizing: border-box;
-    width: 100%;
-    height: 70vh;
-    object-fit: cover;
-  }
-}
-
-// Section 2
-.section2 {
-  background-color: #e9f2fa;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem 20rem;
-
-  .card {
-    transition-duration: all 0.2s;
+  .bg {
+    background-image: url('./images/bg/bg.png');
+    background-color: rgba(0, 0, 0, 0.5);
+    background-blend-mode: multiply;
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    z-index: 900;
+    color: white;
+    position: relative;
   }
 
-  .card:hover {
-    outline: 0.05rem solid #70C6B0;
-    transition: transform .2s;
-    transform: scale(1.1);
+  .header {
+    position: absolute;
+    width: 70%;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    
+    h1, p {
+      font-family: "Averia Sans Libre", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    h1 {
+      font-size: 4rem;
+    }
+
+    p {
+      font-size: 1.5rem;
+      margin: 0;
+    }
   }
 
-  .title {
-    font-family: "Open Sans", sans-serif;
-    font-weight: 700;
-    font-style: italic;
-    font-size: 1.25rem;
-    color: #111111;
-  }
-
-  .text {
-    font-family: "Open Sans", sans-serif;
+  .section1 {
+    background-color: #F0F4F9;
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+    font-family: "Averia Sans Libre", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 1.25rem;
+    
+    .filterinput {
+      width: 60%;
+      min-width: 280px;
+      height: 60px;
+      border-radius: 15px;
+      background: rgb(3,69,112);
+      background: linear-gradient(90deg, rgba(3,69,112,1) 0%, rgba(45,135,168,1) 52%, rgba(81,191,213,1) 100%);
+      color: white;
+      font-size: 1rem;
+      padding-left: 1rem;
+    }
+
+    .filterinput::placeholder {
+      color: rgb(255, 255, 255, 0.5);
+      font-size: 1.2rem;
+    }
+    
+
+    .react-multi-carousel-track {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      flex-direction: row;
+      display: flex;
+      justify-content: center !important;
+      position: relative;
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+      will-change: transform,transition;
   }
+
+  .react-multi-carousel-item {
+    transform-style: preserve-3d;
+    backface-visibility: hidden;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+
+    .skill-slider {
+      width: 90%;
+    }
+
+      h2 {
+        font-family: "Averia Sans Libre", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+        font-size: 2.5rem;
+      }
   
+      .onecard {
+        width: 340px !important;
+        border-radius: 10px 10px 0 0;
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+        transition: transform 0.3s;
+      }
+
+      .onecard:hover {
+        transform: scale(1.1);
+      }
+  }
+
+  .section2 {
+    background-color: #F0F4F9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      font-family: "Averia Sans Libre", sans-serif;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .graphic {
+      width: 80%;
+      background-color: white;
+      border-radius: 20px 20px 0 0;
+      padding: 1rem 2rem 0 2rem;
+      box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+      transition: transform 0.3s;
+    }
+  }
+
+}
+
+@media (max-width: 540px) {
+  .header {
+    h1 {
+      font-size: 3rem !important;
+    }
+
+    p {
+      font-size: 1rem !important;
+    }
+  }
 }

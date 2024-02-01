@@ -1,87 +1,42 @@
 import React from 'react';
-import '@fortawesome/fontawesome-svg-core/styles.css';
-
-import {
-  MDBFooter,
-  MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBIcon,
-  MDBBtn
-} from 'mdb-react-ui-kit';
+import './footer.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFacebook, faTwitter, faGoogle, faInstagram, faLinkedin, faGithub } from '@fortawesome/free-brands-svg-icons';
 
 export const Footer = () => {
   return (
-    <MDBFooter className='bg-light text-center text-white'>
-      <MDBContainer className='p-4 pb-0'>
-        <section className='mb-4'>
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#3b5998' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='facebook-f' />
-          </MDBBtn>
+    <footer className="bg-light text-center text-white">
+      <div className="p-4 pb-0 d-flex justify-content-center">
+        <section className="mb-4">
+          {/* Facebook */}
+          <FontAwesomeIcon icon={faFacebook} />
+          
+          
+          {/* Twitter */}
+          <FontAwesomeIcon icon={faTwitter} />
 
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#55acee' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='twitter' />
-          </MDBBtn>
+          {/* Google */}
+          <FontAwesomeIcon icon={faGoogle} />
 
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#dd4b39' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='google' />
-          </MDBBtn>
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#ac2bac' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='instagram' />
-          </MDBBtn>
+          {/* Instagram */}
+          <FontAwesomeIcon icon={faInstagram} />
 
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#0082ca' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='linkedin-in' />
-          </MDBBtn>
+          {/* Linkedin */}
+          <FontAwesomeIcon icon={faLinkedin} />
 
-          <MDBBtn
-            floating
-            className='m-1'
-            style={{ backgroundColor: '#333333' }}
-            href='#!'
-            role='button'
-          >
-            <MDBIcon fab icon='github' />
-          </MDBBtn>
+          {/* Github */}
+          <FontAwesomeIcon icon={faGithub} />
         </section>
-      </MDBContainer>
-
-      <div className='text-center p-3' style={{ backgroundColor: 'rgba(0, 0, 0, 0.2)' }}>
-        © 2024 Copyright:
-        <a className='text-white' href='https://mdbootstrap.com/'>
-          Juanjo Palma Liñán
-        </a>
+        {/* Section: Social media */}
       </div>
-    </MDBFooter>
+      {/* Grid container */}
+
+      {/* Copyright */}
+      <div className="text-center p-3" style={{ backgroundColor: "gray" }}>
+        © 202 Copyright:
+        <a className="text-white" href="https://mdbootstrap.com/">Juanjo Palma Liñán</a>
+      </div>
+      {/* Copyright */}
+    </footer>
   );
 }
