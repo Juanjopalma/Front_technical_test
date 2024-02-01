@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { Footer } from '../components/FooterApp/Footer';
 import { Home } from '../pages/dashboard/Home/Home';
-import { Region } from '../pages/dashboard/continents/Region';
+import { Region } from '../pages/continents/Region';
 import { NavbarApp } from '../components/NavbarApp/NavbarApp';
-
+import { Footer } from '../components/FooterApp/Footer';
 
 
 export const AppRoutes = () => {
