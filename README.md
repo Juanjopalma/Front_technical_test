@@ -18,5 +18,5 @@ This application allows you to observe the population data of the different cont
 4. Start the application:
    - npm run dev
 
-5. Control + click on the terminal message like this:
+5. Control + click on the terminal message like this (the port may be different):
    - Local:   http://localhost:5173/
