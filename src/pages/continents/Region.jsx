@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
-import axios from 'axios';
-import { useParams } from 'react-router-dom';
-import { Graphic } from '../../../components/Graphic/Graphic';
 import AOS from "aos";
-import "aos/dist/aos.css";
+import { useParams } from 'react-router-dom';
+import { Graphic } from '../../components/Graphic/Graphic';
+import { Card } from 'react-bootstrap';
+import { useFetch } from '../../Hooks/useFetch';
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { Card } from 'react-bootstrap';
-import { Footer } from '../../../components/FooterApp/Footer';
+import "aos/dist/aos.css";
 import './region.scss';
-import { useFetch } from '../../../Hooks/useFetch';
 
 export const Region = () => {
 
