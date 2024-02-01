@@ -4,19 +4,21 @@ import { Row } from 'react-bootstrap';
 // import { NavbarApp } from '../components/NavbarApp/NavbarApp';
 import { Footer } from '../components/FooterApp/Footer';
 // import { Home } from '../pages/dashboard/Home/Home';
+import { Home } from '../pages/dashboard/Home/Home';
 import { Region } from '../pages/dashboard/continents/Region';
-import { Prueba } from '../pages/dashboard/Home/Prueba';
-import { NavbarPrueba } from '../components/NavbarApp/NavbarPrueba';
+import { NavbarApp } from '../components/NavbarApp/NavbarApp';
+
 
 
 export const AppRoutes = () => {
 
+  const [scroll, setScroll] = useState(false);
+
   return (
     <BrowserRouter>
-        {/* <NavbarApp /> */}
-        <NavbarPrueba />
+        <NavbarApp scroll={scroll} />
         <Routes>
-          <Route path='/' element={<Prueba />} />
+          <Route path='/' element={<Home setScroll={setScroll} />} />
           <Route path='/region/:region' element={<Region />} />
         </Routes>
         {/* <Footer /> */}
