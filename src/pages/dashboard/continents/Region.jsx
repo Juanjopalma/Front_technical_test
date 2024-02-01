@@ -6,9 +6,10 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import './region.scss';
 import { Card } from 'react-bootstrap';
 import { Footer } from '../../../components/FooterApp/Footer';
+import './region.scss';
+import { useFetch } from '../../../Hooks/useFetch';
 
 export const Region = () => {
 
@@ -48,23 +49,18 @@ export const Region = () => {
     })
   }
 
-  useEffect(() => {
-    axios
-      .get(`https://restcountries.com/v3.1/region/${region}`)
-      .then((res) => {
-        if (res.data) {
-          addPopulation(res.data);
-          setAllpopulations(res.data); // guardo la población de cada país (mapear)
-          setFindCountry(res.data) // guardo la población de cada país (filtro)
-          // console.log(res.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }, [region])
+  let url = `https://restcountries.com/v3.1/region/${region}`; 
+  const {response, error} = useFetch(url);
 
-  // este useEffect permite filtrar por lo que vaya introduciendo en el input
+  useEffect(() => {
+    if(response !== null) {
+      addPopulation(response);
+      setAllpopulations(response); // I save the population of each country (map)
+      setFindCountry(response) // I save the population of each country (filter)
+    }
+  }, [response, region])
+
+  // allows you to filter by what you enter in the input
   useEffect(() => {
     const tempArray = allpopulations.filter((e) => {
       return e.population <= filter || filter === "";
@@ -72,7 +68,6 @@ export const Region = () => {
     setFindCountry(tempArray);
   }, [filter]);
 
-  // recoge lo que se introduce en el input
   const handleChange = (e) => {
     setFilter(e.target.value);
   };
@@ -86,7 +81,7 @@ export const Region = () => {
     });
   }, []);
 
-  // Función para obtener cuantas filas de 10 países tiene el continente
+  // Function to obtain how many rows of x countries the continent has
   function chunkArray(array, chunkSize) {
     const chunks = [];
     for (let i = 0; i < array.length; i += chunkSize) {
@@ -100,8 +95,8 @@ export const Region = () => {
   const labels = allpopulations?.map((e) => e.name.common);
   const populations = allpopulations?.map((e) => e.population);
 
+  // Group the countries 30 by 30
   const rowsArray = findCountry ? chunkArray(findCountry, 30) : [];
-  console.log("rowsArray", rowsArray);
 
 
   return (
@@ -193,7 +188,7 @@ export const Region = () => {
           />
         </section>
       </main>
-      <Footer />
+      {/* <Footer /> */}
 
     </div>
   )

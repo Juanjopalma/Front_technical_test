@@ -20,7 +20,6 @@
   }
 
   p {
-    // para que no se quede sola una palabra al reducir la pantalla
     text-wrap: pretty;
     margin-left: 2rem;
   }
@@ -50,7 +49,7 @@
 
   /* Header */
   .header {
-    background-image: url('./images/bg/bg-data.jpg');
+    background-image: url('/images/bg/bg-data.jpg');
     background-size: cover;
     background-position: center;
     color: white;
@@ -60,8 +59,6 @@
         width: 60%;
       }
     }
-
-
   }
 
   /* Section 3 */

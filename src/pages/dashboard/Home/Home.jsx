@@ -17,11 +17,13 @@ import europe from "/images/continents/europe.png";
 import oceania from "/images/continents/oceania.jpg";
 import antarctic from "/images/continents/antarctic.jpg";
 import { Footer } from "../../../components/FooterApp/Footer";
+import { useFetch } from "../../../Hooks/useFetch";
 
 export const Home = ({ setScroll }) => {
 
   const navigate = useNavigate();
 
+  // ressponsive for Carousel
   const responsive = {
     superLargeDesktop: {
       breakpoint: { max: 4000, min: 3000 },
@@ -41,6 +43,7 @@ export const Home = ({ setScroll }) => {
     },
   };
 
+  // have the images in an array
   const continents_images = [
     asia,
     africa,
@@ -50,6 +53,7 @@ export const Home = ({ setScroll }) => {
     antarctic,
   ];
 
+  // to add population of each continent
   const initialValue = {
     Asia: 0,
     Africa: 0,
@@ -64,33 +68,32 @@ export const Home = ({ setScroll }) => {
   const [filter, setFilter] = useState("");
 
   const getPopulationbyContinent = (countries) => {
-    let updatedContinents = { ...initialValue }; // hago una copia de continents practicamente
+    let updatedContinents = { ...initialValue }; 
 
     for (let country of countries) {
-      let peopleNumber = country.population; // obtengo la población del país
-      let countryRegion = country.region; // obtengo el continente del país
+      let peopleNumber = country.population; 
+      let countryRegion = country.region; 
 
-      updatedContinents[countryRegion] += peopleNumber; // guardo en la copia la pobblación de cada país
+      updatedContinents[countryRegion] += peopleNumber; 
     }
 
     setContinents(updatedContinents);
   };
 
-  useEffect(() => {
-    axios
-      .get("https://restcountries.com/v3.1/all")
-      .then((res) => {
-        getPopulationbyContinent(res.data); // para obtener la población de cada continente
-        // setAllpopulations(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
 
-  // este useEffect permite filtrar por lo que vaya introduciendo en el input
+  let url = "https://restcountries.com/v3.1/all"; 
+  const {response, error} = useFetch(url);
+
   useEffect(() => {
-    const tempArray = Object.entries(continents) // convierto el objeto continents en un array de arrays con clave, valor
+    if(response !== null) {
+      getPopulationbyContinent(response); 
+    }
+  }, [response])
+  
+
+  // allows you to filter by what you enter in the input
+  useEffect(() => {
+    const tempArray = Object.entries(continents) 
       .filter(
         ([continent, population]) => population <= filter || filter === ""
       );
@@ -98,14 +101,15 @@ export const Home = ({ setScroll }) => {
     setFindContinent(tempArray);
   }, [filter, continents]);
 
-  // recoge lo que se introduce en el input
   const handleChange = (e) => {
     setFilter(e.target.value);
   };
 
+  // for the graphic
   const labels = Object.entries(continents).map((array) => array[0]);
   const populations = Object.entries(continents).map((array) => array[1]);
 
+  // for the animations
   useEffect(() => {
     AOS.init({
       duration: 3000,
@@ -113,6 +117,7 @@ export const Home = ({ setScroll }) => {
       once: false,
     });
   
+    // for the navbar
     const handleScroll = () => {
       setScroll(window.scrollY > 0);
     };
@@ -123,7 +128,6 @@ export const Home = ({ setScroll }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
 
 
   return (
@@ -192,7 +196,7 @@ export const Home = ({ setScroll }) => {
           )}
         </section>
         <section className="section2" id="continents-graphic">  
-          <h2>Stadistics about the Continents</h2>
+          <h2 className="text-center">Stadistics about the Continents</h2>
 
           <Graphic 
             className="graphic"
@@ -201,7 +205,7 @@ export const Home = ({ setScroll }) => {
           />
         </section>
       </main>
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 };
