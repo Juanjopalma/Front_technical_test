@@ -26,8 +26,6 @@ export const NavbarApp = ({ scroll }) => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="navPrueba me-auto">
             <Nav.Link as={Link} to="/" className="mr-3">HOME</Nav.Link>
-
-
             <NavDropdown title="CONTINENTS" id="basic-nav-dropdown" className="options">
               <NavDropdown.Item as={Link} to="/region/Asia">Asia</NavDropdown.Item>
               <NavDropdown.Item as={Link} to="/region/Africa">Africa</NavDropdown.Item>

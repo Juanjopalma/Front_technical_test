@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Graphic } from "../../../components/Graphic/Graphic";
 import "./home.scss";
-import { Button, Card, Col, Row } from "react-bootstrap";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Card } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+import { useFetch } from "../../../Hooks/useFetch";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import Carousel from "react-multi-carousel";
@@ -16,8 +16,6 @@ import americas from "/images/continents/americas.jpg";
 import europe from "/images/continents/europe.png";
 import oceania from "/images/continents/oceania.jpg";
 import antarctic from "/images/continents/antarctic.jpg";
-import { Footer } from "../../../components/FooterApp/Footer";
-import { useFetch } from "../../../Hooks/useFetch";
 
 export const Home = ({ setScroll }) => {
 
@@ -205,7 +203,6 @@ export const Home = ({ setScroll }) => {
           />
         </section>
       </main>
-      {/* <Footer /> */}
     </div>
   );
 };

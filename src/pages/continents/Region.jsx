@@ -37,8 +37,8 @@ export const Region = () => {
   const [findCountry, setFindCountry] = useState();
   const [filter, setFilter] = useState("");
   const [number, setNumber] = useState();
-  const [row, setRow] = useState([]);
 
+  // total population data of the continent
   const addPopulation = (countries) => {
     setNumber(0);
     countries.forEach((country) => {
@@ -53,8 +53,8 @@ export const Region = () => {
   useEffect(() => {
     if(response !== null) {
       addPopulation(response);
-      setAllpopulations(response); // I save the population of each country (map)
-      setFindCountry(response) // I save the population of each country (filter)
+      setAllpopulations(response); // Save the population of each country (map) and send the data to the graphic
+      setFindCountry(response) // Save the population of each country (filter)
     }
   }, [response, region])
 
@@ -186,8 +186,6 @@ export const Region = () => {
           />
         </section>
       </main>
-      {/* <Footer /> */}
-
     </div>
   )
 }
