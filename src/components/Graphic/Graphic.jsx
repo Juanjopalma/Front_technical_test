@@ -32,15 +32,15 @@ export const options = {
     },
   },
   animation: {
-    duration: 2000, // Especifica la duración de la animación en milisegundos
+    duration: 2000, 
   },
 };
 
 export const Graphic = ({labels, populations}) => {
 
   const data = {
-    labels, // eje x
-    datasets: [ // eje y
+    labels,       
+    datasets: [   
       {
         label: 'Populations',
         data: populations, 
