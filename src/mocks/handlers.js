@@ -1,9 +1,9 @@
 import { http, HttpResponse } from 'msw'
  
 export const handlers = [
-  http.get('https://restcountries.com/v3.1/all', () => {
+  http.get('https://restcountries.com/v3.1/all', ({ request }) => {
 
-    // const fields = new URL(req.url).searchParams.get('fields')
+    // const fields = new URL(request.url).searchParams.get('fields')
 
     return HttpResponse.json([
         {
