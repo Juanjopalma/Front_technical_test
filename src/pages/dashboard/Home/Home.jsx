@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Graphic } from "../../../components/Graphic/Graphic";
 import "./home.scss";
 import { Card } from "react-bootstrap";
@@ -62,7 +62,7 @@ export const Home = ({ setScroll }) => {
   };
 
   const [continents, setContinents] = useState(initialValue);
-  const [findContinent, setFindContinent] = useState();
+  const [findContinent, setFindContinent] = useState(null);
   const [filter, setFilter] = useState("");
 
   const getPopulationbyContinent = (countries) => {
@@ -79,7 +79,7 @@ export const Home = ({ setScroll }) => {
   };
 
 
-  let url = "https://restcountries.com/v3.1/all"; 
+  let url = "https://restcountries.com/v3.1/all?fields=region,population"; 
   const {response, error} = useFetch(url);
 
   useEffect(() => {
@@ -87,6 +87,12 @@ export const Home = ({ setScroll }) => {
       getPopulationbyContinent(response); 
     }
   }, [response])
+
+  useEffect(() => {
+    if(error) {
+        alert("There is an error in the page")
+    }
+  }, [error])
   
 
   // allows you to filter by what you enter in the input
@@ -103,9 +109,8 @@ export const Home = ({ setScroll }) => {
     setFilter(e.target.value);
   };
 
-  // for the graphic
-  const labels = Object.entries(continents).map((array) => array[0]);
-  const populations = Object.entries(continents).map((array) => array[1]);
+  const graphic_labels = Object.entries(continents).map((array) => array[0]);
+  const graphic_populations = Object.entries(continents).map((array) => array[1]);
 
   // for the animations
   useEffect(() => {
@@ -158,7 +163,8 @@ export const Home = ({ setScroll }) => {
               You can see cards with population data of the continents
             </p>
           </div>
-          {findContinent !== undefined && (
+          
+          {Array.isArray(findContinent) && findContinent.length > 0 && (
             <>
               <Carousel
                 responsive={responsive}
@@ -198,8 +204,8 @@ export const Home = ({ setScroll }) => {
 
           <Graphic 
             className="graphic"
-            labels={labels} 
-            populations={populations} 
+            labels={graphic_labels} 
+            populations={graphic_populations} 
           />
         </section>
       </main>
