@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import { Graphic } from "../../../components/Graphic/Graphic";
-import "./home.scss";
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../../Hooks/useFetch";
 import AOS from "aos";
-import "aos/dist/aos.css";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import "aos/dist/aos.css";
 import "./home.scss";
 
 import asia from "/images/continents/asia.jpg";
